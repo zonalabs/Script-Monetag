@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://via.placeholder.com/1920x1080.png?text=Monetag+Earnings') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 15px 0;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: white;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .result a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .result a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bot Task Manager</h1>
+        <button onclick="task1()">Task 1: Ads Info</button>
+        <button onclick="task2()">Task 2: Auto Ads</button>
+        <button onclick="task3()">Task 3: Coming Soon</button>
+
+        <!-- Displaying IP and Country Information -->
+        <div class="result" id="result">
+            Loading IP and Country Info...
+        </div>
+    </div>
+
+    <script>
+        let adsCount = 0;
+
+        // Fetch User IP and Country Using IP Geolocation
+        async function getUserInfo() {
+            try {
+                const response = await fetch("https://ipinfo.io?token=YOUR_TOKEN_HERE");
+                const data = await response.json();
+                const ip = data.ip;
+                const country = data.country;
+
+                // Display IP and Country info on the homepage
+                document.getElementById("result").innerHTML = `
+                    <strong>📊 Ads Seen:</strong> ${adsCount}<br>
+                    <strong>🌍 IP Address:</strong> ${ip}<br>
+                    <strong>🏴 Country:</strong> ${country}
+                `;
+            } catch (error) {
+                document.getElementById("result").innerHTML = "Error fetching IP and country info.";
+            }
+        }
+
+        // Call the function to fetch the IP and Country info on page load
+        window.onload = getUserInfo;
+
+        function task1() {
+            const ip = "192.168.1.1"; // Example IP (replace dynamically via backend if needed)
+            const country = "USA"; // Example Country (replace dynamically via backend if needed)
+            document.getElementById("result").innerHTML = `
+                <strong>📊 Ads Seen:</strong> ${adsCount}<br>
+                <strong>🌍 IP Address:</strong> ${ip}<br>
+                <strong>🏴 Country:</strong> ${country}
+            `;
+        }
+
+        function task2() {
+            adsCount++;
+            const adLink = "https://your-ad-link.com"; // Replace with actual ad URL
+            document.getElementById("result").innerHTML = `
+                <strong>Ad ${adsCount}:</strong> <a href="${adLink}" target="_blank">Click here to view</a>
+            `;
+        }
+
+        function task3() {
+            document.getElementById("result").innerHTML = "Task 3 functionality is coming soon!";
+        }
+    </script>
+</body>
+</html>

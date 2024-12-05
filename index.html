@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Page for Telegram Bot</title>
+    <!-- Ad script -->
+    <script src="//niphaumeenses.net/vignette.min.js" data-zone="8518338" data-sdk="show_8518338"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #343a40;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Monetag Ads</h1>
+    <p>Click the button below to watch an ad and unlock your reward!</p>
+    <button onclick="showAd()">Watch Ad</button>
+
+    <script>
+        // Function to show the ad and handle rewards
+        function showAd() {
+            show_8518338().then(() => {
+                // Reward logic after the ad is completed
+                alert('Thank you for watching the ad! Your reward has been unlocked.');
+                // Optionally redirect the user to a reward page or perform other actions
+                window.location.href = "https://t.me/monetag2025k_bot"; // Redirect to your Telegram bot
+            }).catch((err) => {
+                // Handle ad errors or skipped ads
+                console.error("Ad failed to load or was skipped", err);
+                alert("Sorry, the ad could not be completed. Please try again.");
+            });
+        }
+    </script>
+</body>
+</html>
